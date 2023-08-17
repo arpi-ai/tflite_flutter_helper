@@ -61,7 +61,7 @@ class TensorBufferContainer implements BaseImageContainer {
 
   @override
   Image get image {
-    if (_buffer.getDataType() != TfLiteType.kTLiteFloat32) {
+    if (_buffer.getDataType() != TfLiteType.kTfLiteFloat32) {
       // Print warning instead of throwing an exception. When using float models, users may want to
       // convert the resulting float image into Bitmap. That's fine to do so, as long as they are
       // aware of the potential accuracy lost when casting to uint8.

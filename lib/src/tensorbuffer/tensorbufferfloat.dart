@@ -5,7 +5,7 @@ import 'tensorbuffer.dart';
 
 /// Represents data buffer with float(double) values.
 class TensorBufferFloat extends TensorBuffer {
-  static const TfLiteType DATA_TYPE = TfLiteType.kTLiteFloat32;
+  static const int DATA_TYPE = TfLiteType.kTfLiteFloat32;
 
   /// Creates a [TensorBufferFloat] with specified [shape].
   ///
@@ -16,7 +16,7 @@ class TensorBufferFloat extends TensorBuffer {
 
   @override
   TfLiteType getDataType() {
-    return DATA_TYPE;
+    return DATA_TYPE as TfLiteType;
   }
 
   @override

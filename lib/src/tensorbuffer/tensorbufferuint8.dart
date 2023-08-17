@@ -15,7 +15,7 @@ class TensorBufferUint8 extends TensorBuffer {
 
   @override
   TfLiteType getDataType() {
-    return TfLiteType.kTLiteFloat32;
+    return 2 as TfLiteType;
   }
 
   @override
