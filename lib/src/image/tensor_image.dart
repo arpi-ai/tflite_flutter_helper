@@ -34,8 +34,8 @@ class TensorImage {
   /// Initialize a [TensorImage] object.
   ///
   /// Note: For Image with float value pixels use [TensorImage(TfLiteType.float)]
-  TensorImage([TfLiteType dataType = TfLiteType.kTfLiteFloat32])
-      : _tfLiteType = dataType;
+  TensorImage([int dataType = TfLiteType.kTfLiteFloat32])
+      : _tfLiteType = dataType as TfLiteType;
 
   /// Initialize [TensorImage] from [Image]
   ///
