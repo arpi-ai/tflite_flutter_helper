@@ -34,7 +34,7 @@ class TensorImage {
   /// Initialize a [TensorImage] object.
   ///
   /// Note: For Image with float value pixels use [TensorImage(TfLiteType.float)]
-  TensorImage([TfLiteType dataType = TfLiteType.uint8])
+  TensorImage([TfLiteType dataType = TfLiteType.kTLiteFloat32])
       : _tfLiteType = dataType;
 
   /// Initialize [TensorImage] from [Image]
@@ -171,7 +171,7 @@ class TensorImage {
   /// It's essentially a short cut for [getTensorBuffer.getBuffer()].
   ///
   /// Throws [StateError] if the TensorImage never loads data.
-  ByteBuffer get buffer {    
+  ByteBuffer get buffer {
     return tensorBuffer.buffer;
   }
 

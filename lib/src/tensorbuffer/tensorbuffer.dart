@@ -30,19 +30,19 @@ abstract class TensorBuffer {
   /// ```dart
   /// Creating a float TensorBuffer with shape [2, 3]:
   /// List<int> shape = [2, 3];
-  /// TensorBuffer tensorBuffer = TensorBuffer.createFixedSize(shape, TfLiteType.float32);
+  /// TensorBuffer tensorBuffer = TensorBuffer.createFixedSize(shape, TfLiteType.kTLiteFloat32);
   /// ```
   ///
   /// ```dart
   /// Creating an uint8 TensorBuffer of a scalar:
   /// List<int> shape = [2, 3];
-  /// TensorBuffer tensorBuffer = TensorBuffer.createFixedSize(shape, TfLiteType.uint8);
+  /// TensorBuffer tensorBuffer = TensorBuffer.createFixedSize(shape, TfLiteType.kTLiteFloat32);
   /// ```
   ///
   /// ```dart
   /// Creating an empty uint8 TensorBuffer:
   /// List<int> shape = [0];
-  /// TensorBuffer tensorBuffer = TensorBuffer.createFixedSize(shape, TfLiteType.uint8);
+  /// TensorBuffer tensorBuffer = TensorBuffer.createFixedSize(shape, TfLiteType.kTLiteFloat32);
   /// ```
   ///
   /// The size of a fixed-size TensorBuffer cannot be changed once it is created.
@@ -51,9 +51,9 @@ abstract class TensorBuffer {
   /// [ArgumentError] is [shape] has non-positive elements.
   static TensorBuffer createFixedSize(List<int> shape, TfLiteType dataType) {
     switch (dataType) {
-      case TfLiteType.float32:
+      case TfLiteType.kTLiteFloat32:
         return TensorBufferFloat(shape);
-      case TfLiteType.uint8:
+      case TfLiteType.kTfLiteUInt8:
         return TensorBufferUint8(shape);
       default:
         throw ArgumentError(
@@ -70,9 +70,9 @@ abstract class TensorBuffer {
   /// different buffer sizes.
   static TensorBuffer createDynamic(TfLiteType dataType) {
     switch (dataType) {
-      case TfLiteType.float32:
+      case TfLiteType.kTLiteFloat32:
         return TensorBufferFloat.dynamic();
-      case TfLiteType.uint8:
+      case TfLiteType.kTLiteFloat32:
         return TensorBufferUint8.dynamic();
       default:
         throw ArgumentError(
@@ -95,8 +95,8 @@ abstract class TensorBuffer {
     // The only scenario we need float array is FLOAT32->FLOAT32, or we can always use INT as
     // intermediate container.
     // The assumption is not true when we support other data types.
-    if (buffer.getDataType() == TfLiteType.float32 &&
-        dataType == TfLiteType.float32) {
+    if (buffer.getDataType() == TfLiteType.kTLiteFloat32 &&
+        dataType == TfLiteType.kTLiteFloat32) {
       List<double> data = buffer.getDoubleList();
       result.loadList(data, shape: buffer.shape);
     } else {
